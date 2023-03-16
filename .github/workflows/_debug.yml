@@ -10,14 +10,14 @@ jobs:
     steps:
       - name: Print debug table
         run: |
-          echo "# GitHub Actions debug dump"                      >> $GITHUB_STEP_SUMMARY
-          echo ""                                                 >> $GITHUB_STEP_SUMMARY
-          echo "| key               | value                    |" >> $GITHUB_STEP_SUMMARY
-          echo "| ----------------- | ------------------------ |" >> $GITHUB_STEP_SUMMARY
-          echo "| github.event_name | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
-          echo "| github.ref        | ${{ github.ref }}        |" >> $GITHUB_STEP_SUMMARY
-          echo "| github.head_ref   | ${{ github.head_ref }}   |" >> $GITHUB_STEP_SUMMARY
-          echo "| github.base_ref   | ${{ github.base_ref }}   |" >> $GITHUB_STEP_SUMMARY
+          echo "# GitHub Actions debug dump"                          >> $GITHUB_STEP_SUMMARY
+          echo ""                                                     >> $GITHUB_STEP_SUMMARY
+          echo "| key               | value                        |" >> $GITHUB_STEP_SUMMARY
+          echo "| ----------------- | ---------------------------- |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.event_name | \`${{ github.event_name }}\` |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.ref        | \`${{ github.ref }}\`        |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.head_ref   | \`${{ github.head_ref }}\`   |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.base_ref   | \`${{ github.base_ref }}\`   |" >> $GITHUB_STEP_SUMMARY
 
       - name: github
         if: ${{ github && runner.debug }}
