@@ -1,0 +1,141 @@
+on:
+  workflow_dispatch: {}
+  workflow_call: {}
+
+jobs:
+  debug:
+    runs-on:
+      - ubuntu-latest
+
+    steps:
+      - name: Print debug table
+        run: |
+          echo "# GitHub Actions debug dump"                      >> $GITHUB_STEP_SUMMARY
+          echo ""                                                 >> $GITHUB_STEP_SUMMARY
+          echo "| key               | value                    |" >> $GITHUB_STEP_SUMMARY
+          echo "| ----------------- | ------------------------ |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.event_name | ${{ github.event_name }} |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.ref        | ${{ github.ref }}        |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.head_ref   | ${{ github.head_ref }}   |" >> $GITHUB_STEP_SUMMARY
+          echo "| github.base_ref   | ${{ github.base_ref }}   |" >> $GITHUB_STEP_SUMMARY
+
+      - name: github
+        if: ${{ github && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`github\` context"    >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(github) }}'         >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: env
+        if: ${{ env && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`env\` context"       >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(env) }}'            >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: vars
+        if: ${{ vars && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`vars\` context"      >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(vars) }}'           >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: job
+        if: ${{ job && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`job\` context"       >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(job) }}'            >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      # NOTE: requires to be called with `needs:`
+      # - name: jobs
+      #   if: ${{ jobs && runner.debug }}
+      #   continue-on-error: true
+      #   run: |
+      #     echo "## Dump \`jobs\` context"    >> $GITHUB_STEP_SUMMARY
+      #     echo ""                            >> $GITHUB_STEP_SUMMARY
+      #     echo "\`\`\`json"                  >> $GITHUB_STEP_SUMMARY
+      #     echo '${{ toJSON(jobs) }}'         >> $GITHUB_STEP_SUMMARY
+      #     echo "\`\`\`"                      >> $GITHUB_STEP_SUMMARY
+
+      - name: steps
+        if: ${{ steps && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`steps\` context"     >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(steps) }}'          >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: runner
+        if: ${{ runner && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`runner\` context"    >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(runner) }}'         >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      # - name: secrets
+      #   if: ${{ secrets && runner.debug }}
+      #   continue-on-error: true
+      #   run: |
+      #     echo "## Dump \`secrets\` context" >> $GITHUB_STEP_SUMMARY
+      #     echo ""                            >> $GITHUB_STEP_SUMMARY
+      #     echo "\`\`\`json"                  >> $GITHUB_STEP_SUMMARY
+      #     echo '${{ toJSON(secrets) }}'      >> $GITHUB_STEP_SUMMARY
+      #     echo "\`\`\`"                      >> $GITHUB_STEP_SUMMARY
+
+      - name: strategy
+        if: ${{ strategy && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`strategy\` context"  >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(strategy) }}'       >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: matrix
+        if: ${{ matrix && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`matrix\` context"    >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(matrix) }}'         >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: needs
+        if: ${{ needs && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`needs\` context"     >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(needs) }}'          >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
+
+      - name: inputs
+        if: ${{ inputs && runner.debug }}
+        continue-on-error: true
+        run: |
+          echo "## Dump \`inputs\` context"    >> $GITHUB_STEP_SUMMARY
+          echo ""                              >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                    >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(inputs) }}'         >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                        >> $GITHUB_STEP_SUMMARY
