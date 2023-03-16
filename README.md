@@ -34,12 +34,18 @@ tags: |
 ```yaml
 tags: |
   type=schedule
+  type=semver,pattern={{version}}
+  type=semver,pattern={{major}}.{{minor}}
+  type=semver,pattern={{major}}
   type=ref,event=branch
-  type=ref,event=tag
   type=ref,event=pr
+  type=sha
 ```
 
-
+| event    | ref                | version  | tags                                       |
+| -------- | ------------------ | -------- | ------------------------------------------ |
+| `push`   | `refs/heads/main`  | `main`   | `main`, `ha-908482c`                       |
+| `create` | `refs/tags/v0.0.2` | `v0.0.2` | `0`,`0.0`,`0.0.2`, `sha-908482c`, `latest` |
 
 ## References
 
