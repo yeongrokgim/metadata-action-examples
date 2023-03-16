@@ -3,7 +3,7 @@ on:
   pull_request: {}
   push: {}
   release: {}
-  schedule: {}
+  # schedule: {}
   workflow_call: {}
   workflow_dispatch: {}
   workflow_run: {}
