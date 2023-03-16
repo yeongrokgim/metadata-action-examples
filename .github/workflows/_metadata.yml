@@ -1,0 +1,27 @@
+on:
+  workflow_call: {}
+  push: {}
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  metadata:
+    runs-on: ubuntu-latest
+    steps:
+      - id: meta
+        uses: docker/metadata-action@v4
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}
+          # tags:
+
+      - name: dump meta
+        run: |
+          echo "# Dump \`meta\`"           >> $GITHUB_STEP_SUMMARY
+          echo ""                          >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json"                >> $GITHUB_STEP_SUMMARY
+          echo '${{ toJSON(steps.meta) }}' >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`"                    >> $GITHUB_STEP_SUMMARY
+
+  debug:
+    uses: ./.github/workflows/_debug.yml

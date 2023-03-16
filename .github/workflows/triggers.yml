@@ -1,0 +1,15 @@
+on:
+  create: {}
+  pull_request: {}
+  push: {}
+  release: {}
+  schedule: {}
+  workflow_call: {}
+  workflow_dispatch: {}
+  workflow_run: {}
+
+jobs:
+  metadata:
+    uses: ./.github/workflows/_metadata.yml
+  debug:
+    uses: ./.github/workflows/_debug.yml
