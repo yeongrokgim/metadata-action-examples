@@ -42,10 +42,13 @@ tags: |
   type=sha
 ```
 
-| event    | ref                | version  | tags                                       |
-| -------- | ------------------ | -------- | ------------------------------------------ |
-| `push`   | `refs/heads/main`  | `main`   | `main`, `ha-908482c`                       |
-| `create` | `refs/tags/v0.0.2` | `v0.0.2` | `0`,`0.0`,`0.0.2`, `sha-908482c`, `latest` |
+| event    | ref                | version | tags                                       |
+| -------- | ------------------ | ------- | ------------------------------------------ |
+| `push`   | `refs/heads/main`  | `main`  | `main`, `ha-908482c`                       |
+| `create` | `refs/tags/v0.0.2` | `0.0.2` | `0`,`0.0`,`0.0.2`, `sha-908482c`, `latest` |
+| `push`   | `refs/tags/v0.0.2` | `0.0.2` | `0`,`0.0`,`0.0.2`, `sha-908482c`, `latest` |
+| `create` | `refs/tags/v0.0.3` | `0.0.3` | `0`,`0.0`,`0.0.3`, `sha-abed308`, `latest` |
+| `push`   | `refs/tags/v0.0.3` | `0.0.3` | `0`,`0.0`,`0.0.3`, `sha-abed308`, `latest` |
 
 ## References
 
