@@ -6,7 +6,7 @@ on:
   # schedule: {}
   workflow_call: {}
   workflow_dispatch: {}
-  workflow_run: {}
+  # workflow_run: {}
 
 jobs:
   metadata:
